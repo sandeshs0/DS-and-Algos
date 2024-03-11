@@ -30,7 +30,7 @@ public class DPFloydMarshal{
                         { 4, infinity, 0, infinity },
                         { infinity, 2, 9, 0 }};
         dm.flyodM(graph);
-        System.out.println(graph.length);
+        // System.out.println(graph.length);
     }
 
 }
