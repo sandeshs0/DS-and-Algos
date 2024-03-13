@@ -1,0 +1,68 @@
+The sequencing unit time job with deadline and profit problem is a classic problem in the field of scheduling theory, often encountered in computer science and operations research. In this problem, you are given a set of jobs, each with a deadline, a processing time, and a profit associated with completing the job. The goal is to schedule the jobs in such a way that the total profit is maximized while meeting all the deadlines.
+
+Here's a formal description of the problem:
+
+Given:
+
+�
+n jobs, indexed from 
+1
+1 to 
+�
+n.
+For each job 
+�
+i, there is a deadline 
+�
+�
+d 
+i
+​
+ , a processing time 
+�
+�
+p 
+i
+​
+ , and a profit 
+�
+�
+s 
+i
+​
+  associated with completing the job.
+Each job takes one unit of time to process.
+Jobs cannot be preempted or split.
+Objective:
+
+Maximize the total profit obtained by completing the jobs within their deadlines.
+Constraints:
+
+Each job must be completed within its deadline.
+This problem can be solved using various algorithms and techniques, including greedy algorithms, dynamic programming, and integer linear programming. One common approach is to use a greedy algorithm based on sorting the jobs by their profit-to-deadline ratio and then scheduling them accordingly.
+
+Here's a high-level outline of the greedy algorithm:
+
+Calculate the profit-to-deadline ratio (
+�
+�
+/
+�
+�
+s 
+i
+​
+ /d 
+i
+​
+ ) for each job.
+Sort the jobs in non-increasing order of their profit-to-deadline ratio.
+Initialize an array to keep track of the schedule.
+Iterate through the sorted jobs:
+For each job, find the latest available slot before its deadline.
+If a slot is available, schedule the job in that slot and mark it as occupied.
+If no slot is available, skip the job (it cannot be completed within its deadline).
+Calculate the total profit obtained by summing up the profits of scheduled jobs.
+This algorithm finds a feasible solution that meets all the deadlines and maximizes the total profit. However, it may not always find the optimal solution in all cases.
+
+It's worth noting that there are variations of this problem with additional constraints or objectives, such as minimizing the number of late jobs or minimizing the total completion time. Different problem formulations may require different solution approaches.
