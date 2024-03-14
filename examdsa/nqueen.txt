@@ -1,0 +1,55 @@
+The 8-Queens problem is a classic problem in chess where you have to place 8 queens on an 8x8 chessboard in such a way that no two queens threaten each other. Backtracking is a technique used to solve such problems where you systematically explore all possible solutions and backtrack when you reach a dead end. Here's how you can solve the 8-Queens problem using backtracking:
+
+Start with an empty board: Begin with an empty 8x8 chessboard.
+
+Place a queen: Start by placing a queen in the first row and column of the board.
+
+Move to the next row: Move to the next row and try placing a queen in each column of that row.
+
+Check if the queen is safe: Before placing a queen in a particular square, check if it is threatened by any other queen already placed on the board. A queen can threaten another if they share the same row, column, or diagonal.
+
+Repeat: Repeat steps 3 and 4 for each row, backtracking whenever you reach a point where you cannot place a queen without violating the rules.
+
+Continue until all queens are placed or backtrack: Keep trying to place queens on the board until you've successfully placed all 8 queens or you've exhausted all possibilities, in which case you backtrack to the previous queen placement and try another position.
+
+Backtrack: If you reach a dead end (i.e., there's no valid position to place a queen in the current row), backtrack to the previous row and try a different position for the queen in that row.
+
+Repeat until solution found or all possibilities explored: Continue this process of trying different positions for queens and backtracking until you find a solution or you've explored all possible configurations.
+
+function solveNQueens(board, row):
+    // Base case: if all queens are placed
+    if row == size of board:
+        print board // Print or store the solution
+        return
+    
+    // Try placing queen in each column of the current row
+    for each col in board[row]:
+        if isSafe(row, col, board):
+            // Place queen at current position
+            board[row][col] = 'Q'
+            
+            // Recur to place queens in the next row
+            solveNQueens(board, row + 1)
+            
+            // Backtrack: remove the queen from the current position
+            board[row][col] = '.'
+            
+// Check if placing a queen at a given position is safe
+function isSafe(row, col, board):
+    // Check the column
+    for each i from 0 to row - 1:
+        if board[i][col] == 'Q':
+            return false
+    
+    // Check upper left diagonal
+    for each i, j such that i < row and j < col:
+        if board[i][j] == 'Q' and i + j == row + col:
+            return false
+    
+    // Check upper right diagonal
+    for each i, j such that i < row and j > col:
+        if board[i][j] == 'Q' and i - j == row - col:
+            return false
+    
+    // If no conflicts, the position is safe
+    return true
