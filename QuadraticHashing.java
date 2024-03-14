@@ -19,7 +19,7 @@ public class QuadraticHashing {
         int i=1; //initially prob number is set to 1
 
         while (keys[hashValue]!=0 && keys[hashValue]!=key) {
-            hashValue=(hashValue+i*i)% size;
+            hashValue=(hashValue+i*i) % size;
             i++;
         }
         if(keys[hashValue]==0){ // if the key is not already there
@@ -39,19 +39,18 @@ public class QuadraticHashing {
     }
 
     public static void main(String[] args) {
-        QuadraticHashing qh= new QuadraticHashing(10);
-        qh.insert(1, 978);
-        qh.insert(2, 78);
-        qh.insert(3, 766);
-        qh.insert(4, 978);
-        qh.insert(5, 978);
-        qh.insert(6, 978);
-        qh.insert(7, 978);
-        qh.insert(8, 978);
-        qh.insert(9, 978);
-        qh.insert(10, 978);
-        qh.insert(10, 978);
-        qh.print();
+        QuadraticHashing hashTable= new QuadraticHashing(11);
+        hashTable.insert(101, 80);
+        hashTable.insert(201, 10);
+        hashTable.insert(301, 20);
+        hashTable.insert(102, 30);
+        hashTable.insert(202, 40);
+        hashTable.insert(302, 43);
+        hashTable.insert(103, 33);
+        hashTable.insert(203, 50);
+        hashTable.insert(303, 3);
+        hashTable.insert(104, 2);
+        hashTable.print();
     }
 }
 
