@@ -1,74 +1,87 @@
-import java.util.function.IntConsumer;
-
 public class FizzBuzz {
-    // taken help
-    
     private int n;
-    private int i;
+    private int currentNumber = 1;
 
     public FizzBuzz(int n) {
         this.n = n;
-        this.i = 1;
     }
 
-    // printFizz.run() outputs "fizz".
-    public void fizz(Runnable printFizz) throws InterruptedException {
-        synchronized (this) {
-            while (i<=n) {
-                if (i%3==0 && i%5!=0) {
-                    printFizz.run();
-                    i+=1;
-                    notifyAll();            
-                } else {
+    public synchronized void fizz() {
+        while (currentNumber <= n) {
+            if (currentNumber % 3 == 0 && currentNumber % 5 != 0) {
+                System.out.println("Fizz");
+                currentNumber++;
+                notifyAll();
+            } else {
+                try {
                     wait();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
                 }
             }
         }
     }
 
-    // printBuzz.run() outputs "buzz".
-    public void buzz(Runnable printBuzz) throws InterruptedException {
-        synchronized (this) {
-            while (i<=n) {
-                if (i%3!=0 && i%5==0) {
-                    printBuzz.run();
-                    i+=1;
-                    notifyAll();            
-                } else {
+    public synchronized void buzz() {
+        while (currentNumber <= n) {
+            if (currentNumber % 3 != 0 && currentNumber % 5 == 0) {
+                System.out.println("Buzz");
+                currentNumber++;
+                notifyAll();
+            } else {
+                try {
                     wait();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
                 }
             }
         }
     }
 
-    // printFizzBuzz.run() outputs "fizzbuzz".
-    public void fizzbuzz(Runnable printFizzBuzz) throws InterruptedException {
-        synchronized (this) {
-            while (i<=n) {
-                if (i%15==0) {
-                    printFizzBuzz.run();
-                    i+=1;
-                    notifyAll();            
-                } else {
+    public synchronized void fizzbuzz() {
+        while (currentNumber <= n) {
+            if (currentNumber % 3 == 0 && currentNumber % 5 == 0) {
+                System.out.println("FizzBuzz");
+                currentNumber++;
+                notifyAll();
+            } else {
+                try {
                     wait();
-                }
-            }
-        }
-    }
-    
-    // printNumber.accept(x) outputs "x", where x is an integer.
-    public void number(IntConsumer printNumber) throws InterruptedException {
-        synchronized (this) {
-            while (i<=n) {
-                if (i%3!=0 && i%5!=0) {
-                    printNumber.accept(i);
-                    i+=1;
-                    notifyAll();            
-                } else {
-                    wait();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
                 }
             }
         }
     }
 
+    public synchronized void number() {
+        while (currentNumber <= n) {
+            if (currentNumber % 3 != 0 && currentNumber % 5 != 0) {
+                System.out.println(currentNumber);
+                currentNumber++;
+                notifyAll();
+            } else {
+                try {
+                    wait();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        int n = 15; // Change n to control the range of numbers
+        FizzBuzz fizzBuzz = new FizzBuzz(n);
+
+        Thread fizzThread = new Thread(() -> fizzBuzz.fizz());
+        Thread buzzThread = new Thread(() -> fizzBuzz.buzz());
+        Thread fizzBuzzThread = new Thread(() -> fizzBuzz.fizzbuzz());
+        Thread numberThread = new Thread(() -> fizzBuzz.number());
+
+        fizzThread.start();
+        buzzThread.start();
+        fizzBuzzThread.start();
+        numberThread.start();
+    }
 }

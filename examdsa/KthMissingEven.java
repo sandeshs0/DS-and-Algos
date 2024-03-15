@@ -26,7 +26,7 @@ public class KthMissingEven {
 
     public static void main(String[] args) {
         int[] arr = {2, 6, 10, 14};
-        int k = 2;
-        System.out.println("The " + k + "nd missing even number is: " + findMissingKthEven(arr, 3));
+        // int k = 1;
+        System.out.println("The nd missing even number is: " + findMissingKthEven(arr, 5));
     }
 }

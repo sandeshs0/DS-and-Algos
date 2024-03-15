@@ -24,6 +24,8 @@ class Bellman{
                 return 1;
             }
         }
+
+        
         return 0;
         
     }
