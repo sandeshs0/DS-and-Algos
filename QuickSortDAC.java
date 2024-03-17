@@ -8,7 +8,7 @@ public class QuickSortDAC {
         sort(array, start, pivot-1); // divide to left
         sort(array, pivot+1, end); //divide and solve right
     }
-
+    
     int partition(int a[], int start, int end){ //fn to move pointer and find out where to swap 
         int pivot=start; // start ma pivot
         int p=start;
